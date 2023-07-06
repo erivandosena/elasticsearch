@@ -1,0 +1,86 @@
+# Configuração essencial do cluster
+cluster.name: "elk-single-node-cluster"
+node.name: "elasticsearch-node-1"
+node.roles: ["master", "data"]
+discovery.type: single-node
+
+# Configuração de rede
+network.host: 0.0.0.0
+
+# Configuração de caminhos e armazenamento
+path:
+  data: /usr/share/elasticsearch/cluster/data
+  logs: /usr/share/elasticsearch/cluster/logs
+  repo: /usr/share/elasticsearch/cluster/snapshot
+
+# Configuração de HTTP
+http.host: 0.0.0.0
+http.port: 9200
+
+# Configuração de transporte
+transport.host: 0.0.0.0
+transport.port: 9300
+
+# Configuração de licenciamento
+xpack.license.self_generated.type: basic
+
+# Configuração de monitoramento
+xpack.monitoring.collection.enabled: false
+
+# Configuração de ingestão de dados
+ingest.geoip.downloader.enabled: false
+
+# Configuração de alocação de armazenamento
+cluster.routing.allocation.disk.watermark.low: 1gb
+cluster.routing.allocation.disk.watermark.high: 500mb
+cluster.routing.allocation.disk.watermark.flood_stage: 200mb
+
+# Configuração do mecanismo de machine learning
+xpack.ml.enabled: true
+
+# Configuração de ações destrutivas
+action.destructive_requires_name: true
+
+# Configuração de índices automáticos
+action.auto_create_index: .monitoring*,.watches,.triggered_watches,.watcher-history*,.ml*
+
+# Configuração adicional personalizada
+node.store.allow_mmap: false
+
+xpack.security.authc.token.enabled: false
+xpack.security.audit.enabled: false
+cluster.deprecation_indexing.enabled: true
+
+# Configuração de segurança
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: false
+xpack.security.http.ssl.enabled: false
+
+# Configuração de autenticação e autorização
+xpack:
+  security:
+    authc:
+      realms:
+        file:
+          file1:
+            order: 0
+        native:
+          native1:
+            order: 1
+        ldap:
+          ldap1:
+            order: 2
+            url: "ldaps://ldap.example.com:636"
+            bind_dn: "cn=ldapuser, ou=users, o=services, dc=example, dc=com"
+            user_search:
+              base_dn: "dc=example,dc=com"
+              filter: "(cn={0})"
+            group_search:
+              base_dn: "dc=example,dc=com"
+            files:
+              role_mapping: "role_mapping.yml"
+            unmapped_groups_as_roles: false
+
+# Configuração geral
+bootstrap.memory_lock: true
+logger.level: ERROR
