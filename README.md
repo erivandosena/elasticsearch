@@ -1,5 +1,5 @@
 # Elasticsearch
-Elasticsearch v8.8.2 com image Debian em Docker
+Elasticsearch v8.8.2 and Docker image Debian
 
 Built by Backporting the 6.8 ARM64 Dockerfile and copying the JDK from the 20.1 ElasticSearch docker distribution for AMD 32/64 to the 8.8 ElasticSearch distribution in this repo (elasticsearch-8.8.2-linux-x86_64.tar.gz)
 
