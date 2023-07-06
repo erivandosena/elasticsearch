@@ -1,0 +1,14 @@
+# Configurações de memória
+-Xms3g
+-Xmx3g
+
+# Outras opções de JVM
+-Xlog:disable
+-Xlog:all=error:stderr:utctime,level,tags
+-Xlog:gc=info:stderr:utctime
+
+# Opções de segurança
+
+# Outras opções
+-Dlog4j2.configurationFile=/etc/elasticsearch/log4j2.properties
+-Dlog4j2.disable.jmx=false
