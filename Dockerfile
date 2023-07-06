@@ -105,8 +105,9 @@ RUN set -eux ; \
     done ; \
     exit $exit_code
 
-# RUN mkdir -p /etc/elasticsearch
 ENV ES_PATH_CONF /etc/elasticsearch
+ARG COMMIT_SHA
+ARG VERSION
 
 COPY config/sysctl-local.conf /etc/sysctl.d/local.conf
 COPY config/java.policy /tmp/java.policy
@@ -156,25 +157,26 @@ USER elasticsearch
 
 EXPOSE 9200 9300
 
-LABEL org.label-schema.build-date="2021-05-11T13:32:43.325594Z" \
+LABEL org.label-schema.build-date="023-07-06T00:02:43.325594Z -0300" \
   org.label-schema.license="Elastic-License" \
   org.label-schema.name="Elasticsearch" \
   org.label-schema.schema-version="1.0" \
-  org.label-schema.url="https://www.elastic.co/products/elasticsearch" \
-  org.label-schema.usage="https://www.elastic.co/guide/en/elasticsearch/reference/index.html" \
-  org.label-schema.vcs-ref="103f38cad814fb566f91d2c75828b835b910eab0" \
-  org.label-schema.vcs-url="https://github.com/elastic/elasticsearch" \
+  org.label-schema.url="https://github.com/elastic/elasticsearch" \
+  org.label-schema.usage="https://github.com/erivandosena/elasticsearch/blob/development/README.md" \
+  org.label-schema.vcs-ref="${COMMIT_SHA}" \
+  org.label-schema.vcs-url="https://github.com/erivandosena/elasticsearch" \
   org.label-schema.vendor="Elastic" \
   org.label-schema.version="8.8.2-linux-x86_64" \
-  org.opencontainers.image.created="2021-05-11T13:32:43.325594Z" \
-  org.opencontainers.image.documentation="https://www.elastic.co/guide/en/elasticsearch/reference/index.html" \
+  org.opencontainers.image.created="2023-07-06T00:02:43.325594Z -0300" \
+  org.opencontainers.image.documentation="https://www.elastic.co/guide/en/elasticsearch/reference/8.8/index.html" \
   org.opencontainers.image.licenses="Elastic-License" \
-  org.opencontainers.image.revision="103f38cad814fb566f91d2c75828b835b910eab0" \
+  org.opencontainers.image.version="${VERSION}" \
+  org.opencontainers.image.revision="${COMMIT_SHA}" \
   org.opencontainers.image.source="https://github.com/elastic/elasticsearch" \
   org.opencontainers.image.title="Elasticsearch" \
   org.opencontainers.image.url="https://www.elastic.co/products/elasticsearch" \
   org.opencontainers.image.vendor="Elastic" \
-  org.opencontainers.image.version="8.8.2-linux-x86_64"
+  org.opencontainers.image.maintainer="Erivando Sena<erivandosena@gmail.com>"
 
 ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/docker-entrypoint.sh"]
 

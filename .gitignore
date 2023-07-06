@@ -23,3 +23,5 @@
 hs_err_pid*
 replay_pid*
 elasticsearch-8.8.2-linux-x86_64.tar.gz
+generate_password.py
+test_generate_password.py
