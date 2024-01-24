@@ -1,0 +1,7 @@
+superuser:elastic,admin,erivando
+apm_system:apm_system
+kibana_user:kibana
+kibana_system:kibana_system
+logstash_system:logstash_system
+beats_system:beats_system
+remote_monitoring_collector:remote_monitorin

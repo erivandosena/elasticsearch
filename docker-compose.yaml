@@ -1,0 +1,41 @@
+### Como usar:
+#
+# Docker:
+# docker login 
+# docker build -t erivando/elasticsearch:latest .
+# dcker tag erivando/elasticsearch:latest erivando/elasticsearch:8.8.2
+# docker push erivando/elasticsearch:8.8.2
+#
+# Compose V2 (para Compose V1 use: docker-compose ...):
+# docker compose build --no-cache && docker compose up -d
+# docker compose logs -f
+# docker exec -it elasticsearch /bin/bash
+# docker compose down
+
+version: '3.9'
+
+services:
+  app-build:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - COMMIT_SHA=2428676974207265762d7061727365202d2d73686f7274204845414429
+        - VERSION=3.0.2
+    image: erivando/elasticsearch:debug
+    container_name: elasticsearch
+    restart: always
+    ports:
+      - "8092:9200"
+      - "8033:3300"
+    networks:
+      - development
+
+volumes:
+  postgresql_data:
+    driver: local
+
+networks:
+ development:
+   name: development
+   driver: bridge

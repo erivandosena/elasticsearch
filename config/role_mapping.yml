@@ -1,0 +1,6 @@
+monitoring: 
+  - "cn=admins,dc=example,dc=com" 
+user:
+  - "cn=Admin,cn=contractors,dc=example,dc=com" 
+  - "cn=users,dc=example,dc=com"
+  - "cn=admins,dc=example,dc=com"

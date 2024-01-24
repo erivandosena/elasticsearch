@@ -1,0 +1,5 @@
+
+grant {
+    // JMX Java Management eXtensions
+    permission javax.management.MBeanTrustPermission "register";
+};
